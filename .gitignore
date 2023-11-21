@@ -55,3 +55,11 @@ docs/_build/
 
 # PyBuilder
 target/
+/.idea/.gitignore
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/OpenHRMS.iml
+/.idea/inspectionProfiles/profiles_settings.xml
+/hr_payroll_account_community/.vscode/settings.json
+/hr_payroll_community/.vscode/settings.json
+/.idea/vcs.xml

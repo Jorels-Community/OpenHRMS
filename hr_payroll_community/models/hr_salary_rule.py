@@ -27,7 +27,7 @@ class HrPayrollStructure(models.Model):
     note = fields.Text(string='Description')
     parent_id = fields.Many2one('hr.payroll.structure', string='Parent', default=_get_parent)
     children_ids = fields.One2many('hr.payroll.structure', 'parent_id', string='Children', copy=True)
-    rule_ids = fields.Many2many('hr.salary.rule', 'hr_structure_salary_rule_rel', 'struct_id', 'rule_id', string='Salary Rules')
+    rule_ids = fields.One2many('hr.salary.rule',  'struct_id', string='Salary Rules')
 
     @api.constrains('parent_id')
     def _check_parent_id(self):
@@ -150,6 +150,7 @@ class HrSalaryRule(models.Model):
         ('code', 'Python Code'),
     ], string='Amount Type', index=True, required=True, default='fix', help="The computation method for the rule amount.")
     amount_fix = fields.Float(string='Fixed Amount', digits=dp.get_precision('Payroll'))
+    struct_id = fields.Many2one('hr.payroll.structure', string="Salary Structure", required=True)
     amount_percentage = fields.Float(string='Percentage (%)', digits=dp.get_precision('Payroll Rate'),
         help='For example, enter 50.0 to apply a percentage of 50%')
     amount_python_compute = fields.Text(string='Python Code',
